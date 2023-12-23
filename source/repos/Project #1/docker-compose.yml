@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+  project1:
+    image: ${DOCKER_REGISTRY-}project1
+    build:
+      context: .
