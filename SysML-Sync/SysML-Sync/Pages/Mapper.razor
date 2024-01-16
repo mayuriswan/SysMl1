@@ -1,0 +1,106 @@
+﻿@page "/mapper"
+@if ((Mappers == null) && !Loaded)
+{
+    <div class="text-center">
+        <div class="spinner-border" role="status" style="width: 3rem; height: 3rem; margin-top: 20%; margin-bottom: 20%;">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+}
+else if ((Mappers == null) && Loaded)
+{
+    <div class="text-center">
+        <h3 class="text-danger">There was an error loading orders </h3>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="title-5 m-b-35">Modelle</h3>
+            <div class="table-data__tool">
+                <div class="table-data__tool-left">
+                    <button class="au-btn-filter">
+                        <i class="fa-regular fa-filter"></i>filters
+                    </button>
+                </div>
+                <div class="table-data__tool-right">
+                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="fas fa-plus"></i>Mapper erstelien
+                </button>
+                    <button class="au-btn au-btn-icon au-btn--blue au-btn--small">
+                        <i class="fas fa-plus"></i>Mapper hachladen
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive table-responsive-data2">
+                <table class="table table-data2">
+                    <thead>
+                        <tr>
+                            <th>
+                                <label class="au-checkbox">
+                                    <input type="checkbox">
+                                    <span class="au-checkmark"></span>
+                                </label>
+                            </th>
+                            <th>Name</th>
+                            <th>Content</th>
+                            <th>Ersteller</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var model in Mappers)
+                        {
+                            // Use index to create a unique show variable for each row
+                            <tr class="tr-shadow">
+                                <td>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </td>
+                                <td>@model.Name</td>
+                                <td>@model.Content</td>
+                                <td>@model.Creator</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" @onclick="() => ShowDropDowns(model.Id)" type="button" id="dropdownMenuButton_@model.Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            More
+                                        </button>
+                                        <div class="dropdown-menu @(showStates.ContainsKey(model.Id) && showStates[model.Id] ? "show" : "")" aria-labelledby="dropdownMenuButton_@model.Id">
+                                            <a class="dropdown-item" href="#">Herunterladen</a>
+                                            <a class="dropdown-item" href="#">Freigeben</a>
+                                            <a class="dropdown-item" href="#">Submodell erstellen</a>
+                                            <a class="dropdown-item" href="#">SubModell importieren</a>
+                                            <a class="dropdown-item" href="#">Löschen</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="spacer"></tr>
+                        }
+                        <tr>
+                            <td>@count items</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    </ul>
+                                </nav>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

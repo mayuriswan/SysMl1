@@ -1,13 +1,14 @@
-﻿namespace SysML_Sync
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace SysML_Sync
 {
-    public class User
+    public class User : IdentityUser
     {
-        public string Username { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public int PLZ { get; set; }
 
-        public IEnumerable<Dictionary<User, Mapper>> mapperSettings { get; set; }
+        public string Ort { get; set; }
+
     }
 }
