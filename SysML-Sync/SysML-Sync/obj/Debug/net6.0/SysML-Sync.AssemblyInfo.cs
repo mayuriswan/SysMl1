@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SysML-Sync")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0adb1262380bab365a7d365b5913c2279f425299")]
 [assembly: System.Reflection.AssemblyProductAttribute("SysML-Sync")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SysML-Sync")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
