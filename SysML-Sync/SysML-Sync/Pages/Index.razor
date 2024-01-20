@@ -4,6 +4,7 @@
 @using SysML_Sync
 @inject UserManager<User> _userManager
 @inject SignInManager<User> _signInManager
+@inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 @code {
@@ -13,9 +14,19 @@
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var userId = authState.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        user = await _userManager.FindByIdAsync(userId);
+
+        if (_signInManager.IsSignedIn(authState.User))
+        {
+            user = await _userManager.FindByIdAsync(userId);
+        }
+        else
+        {
+            // User is not authenticated, redirect to login page
+            NavigationManager.NavigateTo("/Identity/Account/Login", true);
+        }
     }
 }
+
 
 <PageTitle>Profile</PageTitle>
 
